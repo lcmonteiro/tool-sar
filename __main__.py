@@ -5,6 +5,8 @@
 # -------------------------------------------------------------------------------------------------
 from argparse   import ArgumentParser
 from CheckUUIDS import main as check_uuids
+from SarViewer  import main as view_sar
+from SarParser  import main as parse_sar
 # -------------------------------------------------------------------------------------------------
 # parsers
 # -------------------------------------------------------------------------------------------------
@@ -20,6 +22,22 @@ parser = sub.add_parser('check-uuids')
 parser.add_argument('path', type=str, help='search path')
 # function
 parser.set_defaults(func=check_uuids)
+# -----------------------------------------------------------------------------
+# parse sar
+# -----------------------------------------------------------------------------
+parser = sub.add_parser('parse-sar')
+# arguments
+parser.add_argument('path', type=str, help='search path')
+# function
+parser.set_defaults(func=parse_sar)
+# -----------------------------------------------------------------------------
+# view sar
+# -----------------------------------------------------------------------------
+parser = sub.add_parser('view-sar')
+# arguments
+parser.add_argument('path', type=str, help='search path')
+# function
+parser.set_defaults(func=view_sar)
 # -------------------------------------------------------------------------------------------------
 # execute
 # -------------------------------------------------------------------------------------------------
