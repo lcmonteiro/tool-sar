@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
-#
-import re
-#
+# -------------------------------------------------------------------------------------------------
+# dependencies
+# -------------------------------------------------------------------------------------------------
+from re import match as re_match
+# -------------------------------------------------------------------------------------------------
+# Var Search
+# -------------------------------------------------------------------------------------------------
 class VarSearch:
 	#----------------------------------------------------------------------------------------------
 	# public
@@ -36,7 +40,7 @@ class VarSearch:
 				VarSearch.__assert(pattern, d)
 			#
 		else:
-			if not re.match(pattern, doc):
+			if not re_match(pattern, doc):
 				raise AssertionError()
 			#
 		#
@@ -45,7 +49,7 @@ class VarSearch:
 	def __contains(pattern, doc):
 		def __find(p, d):
 			for k in d:
-				if re.match(p, k):
+				if re_match(p, k):
 					return k
 				#
 			raise AssertionError()
@@ -64,20 +68,21 @@ class VarSearch:
 				VarSearch.__contains(pattern, d)
 			#
 		else:
-			if not re.match(pattern, doc):	
+			if not re_match(pattern, doc):	
 				raise AssertionError()
 			#
 		#
 	#	
-#
+# -------------------------------------------------------------------------------------------------
+# main
+# -------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
-
 	print(VarSearch.contains(
 		{'.': {'.*':'.'}, '@': {'DEST': '.*'}}, 
-		[{'@': {'DEST': 'TRACEABLE'}, '#': 'DK_T3_1917'}, {'@': {'DEST': 'TRACEABLE'}, '#': 'FZM_SC_SYS_PA_332'}, {'@': {'DEST': 'TRACEABLE'}, '#': 'FZM_SC_SYS_PA_173'}, {'@': {'DEST': 'TRACEABLE'}, '#': 'FZM_SC_SYS_PA_333'}]
-	))
-
-	# print(VarSearch.match(
-	# 	{'#': '.*', '@': {'DEST': '.*'}}, 
-	# 	[{'@': {'DEST': 'TRACEABLE'}, '#': 'DK_T3_1917'}, {'@': {'DEST': 'TRACEABLE'}, '#': 'FZM_SC_SYS_PA_332'}, {'@': {'DEST': 'TRACEABLE'}, '#': 'FZM_SC_SYS_PA_173'}, {'@': {'DEST': 'TRACEABLE'}, '#': 'FZM_SC_SYS_PA_333'}]
-	# ))
+		[	{'@': {'DEST': 'TRACEABLE'}, '#': 'DK_T3_1917'}, 
+			{'@': {'DEST': 'TRACEABLE'}, '#': 'FZM_SC_SYS_PA_332'}, 
+			{'@': {'DEST': 'TRACEABLE'}, '#': 'FZM_SC_SYS_PA_173'}, 
+			{'@': {'DEST': 'TRACEABLE'}, '#': 'FZM_SC_SYS_PA_333'}]))
+# -------------------------------------------------------------------------------------------------
+# end
+# -------------------------------------------------------------------------------------------------

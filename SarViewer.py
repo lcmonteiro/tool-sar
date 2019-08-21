@@ -5,6 +5,7 @@
 from flask        import Flask, render_template, request, jsonify
 from SarParser    import SarParser
 from SarSearch    import SarSearch
+from SarFilter    import SarFilter
 from SarTransform import SarTransform
 # -------------------------------------------------------------------------------------------------
 # code
@@ -21,13 +22,15 @@ def main(params):
     # data service
     @app.route("/data")
     def data():
+        # parse
         if not hasattr(data, 'parsed'):
-            data.parsed = SarParser(params.path).process()
+            data.parsed = SarParser(params.path)()
         # filter
-        filtered = data.parsed
+        if not hasattr(data, 'filtered'):
+            data.filtered = SarFilter()(data.parsed)
         # split
-        if not hasattr(data, 'data'):
-            data.nodes = SarTransform.split(filtered)
+        if not hasattr(data, 'nodes'):
+            data.nodes = SarTransform.split(data.filtered)
         # json
         return jsonify(data.nodes)
     #

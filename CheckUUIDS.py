@@ -35,7 +35,7 @@ def main(params):
     # log
     Log.info('Start')
     # xml to python
-    data = SarFiles(params.path).process()
+    data = SarFiles(params.path)()
     # seek for equal UUIDs
     result = {}
     for f, d in data.items():
