@@ -5,8 +5,9 @@
 # -------------------------------------------------------------------------------------------------
 from argparse   import ArgumentParser
 from CheckUUIDS import main as check_uuids
-from SarViewer  import main as view_sar
-from SarParser  import main as parse_sar
+from SarViewer  import main as sar_view
+from SarParser  import main as sar_parse
+from SarFilter  import main as sar_filter
 # -------------------------------------------------------------------------------------------------
 # parsers
 # -------------------------------------------------------------------------------------------------
@@ -25,19 +26,37 @@ parser.set_defaults(func=check_uuids)
 # -----------------------------------------------------------------------------
 # parse sar
 # -----------------------------------------------------------------------------
-parser = sub.add_parser('parse-sar')
+parser = sub.add_parser('parse')
 # arguments
 parser.add_argument('path', type=str, help='search path')
 # function
-parser.set_defaults(func=parse_sar)
+parser.set_defaults(func=sar_parse)
+# -----------------------------------------------------------------------------
+# filter sar
+# -----------------------------------------------------------------------------
+parser = sub.add_parser('filter')
+# arguments
+parser.add_argument(
+	'path', type=str, help='search path')
+parser.add_argument(
+	'--target', type=str, help='target key', nargs='+', default='.*')
+parser.add_argument(
+	'--filter', type=str, help='filter key', nargs='+', default='')
+# function
+parser.set_defaults(func=sar_filter)
 # -----------------------------------------------------------------------------
 # view sar
 # -----------------------------------------------------------------------------
-parser = sub.add_parser('view-sar')
+parser = sub.add_parser('view')
 # arguments
-parser.add_argument('path', type=str, help='search path')
+parser.add_argument(
+	'path', type=str, help='search path')
+parser.add_argument(
+	'--target', type=str, help='target key', nargs='+', default='.*')
+parser.add_argument(
+	'--filter', type=str, help='filter key', nargs='+', default='')
 # function
-parser.set_defaults(func=view_sar)
+parser.set_defaults(func=sar_view)
 # -------------------------------------------------------------------------------------------------
 # execute
 # -------------------------------------------------------------------------------------------------

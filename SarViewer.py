@@ -27,7 +27,7 @@ def main(params):
             data.parsed = SarParser(params.path)()
         # filter
         if not hasattr(data, 'filtered'):
-            data.filtered = SarFilter()(data.parsed)
+            data.filtered = SarFilter(params.target, params.filter)(data.parsed)
         # split
         if not hasattr(data, 'nodes'):
             data.nodes = SarTransform.split(data.filtered)
@@ -36,7 +36,7 @@ def main(params):
     #
     # startting point
     #
-    app.run(debug=False, host='0.0.0.0', port=8080)
+    app.run(debug=True, host='0.0.0.0', port=8080)
 # -------------------------------------------------------------------------------------------------
 # end
 # -------------------------------------------------------------------------------------------------
