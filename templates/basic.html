@@ -90,7 +90,7 @@
 					.on("drag", dragged)
 					.on("end", dragended));
 		node.append("title")
-			.text(function(d) { return d.id; });
+			.text(function(d) { return d.id + '( '+ d.type +' )'; });
 		// simulation
 		simulation
 			.nodes(graph.nodes)

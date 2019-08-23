@@ -24,56 +24,47 @@ class SarFilter(SarBase):
     # -------------------------------------------------------------------------
     # process
     # -------------------------------------------------------------------------
-    def __call__(self, data):
-        print(self.__target)
-        # extract target points
-        points = reduce(
-            lambda a, p: a + list(filter(compile(p).match, data)),
-            self.__target, 
-            []
-        )
-        # filter  
-        result = {}
-        for each in points:
-            result[each] = data[each]  
-            # find connections 
-            find_inputs (data, data[each][ILINK], result)
-            find_outputs(data, data[each][OLINK], result)
-        # result 
-        return result
-    # -------------------------------------------------------------------------
-    # find input 
-    # -------------------------------------------------------------------------
-    def find_inputs(data, links, results):
-        points = reduce(
-            lambda a, p: a + list(filter(compile(p).match, data)),
-            self.__filter, 
-            []
-        )
-        filter(compile(p).match, data)
-        for each in links:
-            if each in data:
-                if match(data[each][SarBase.TYPE], self.__filter):
-                    pass
-    # -------------------------------------------------------------------------
-    # find outputs 
-    # -------------------------------------------------------------------------
-    def find_inputs():
-        pass
-    
-# -----------------------------------------------------------------------------
-# private
-# -----------------------------------------------------------------------------
-
+    def __call__(self, data, cache={}):
+        # ---------------------------------------------------------------------
+        # find
+        # ---------------------------------------------------------------------
+        def find(direction, node, data, cache):
+            if direction not in node:
+                return
+            for link in node[direction]:
+                if link in cache:
+                    continue
+                if link not in data:
+                    continue
+                for pattern in self.__filter:
+                    if match(pattern, data[link][SarBase.TYPE]):
+                        continue
+                    cache[link] = data[link]
+                    if cache[link][SarBase.TYPE] == 'ASSEMBLY-SW-CONNECTOR':
+                        print(link)
+                        find(SarBase.OLINK, cache[link], data, cache)    
+                    find(direction, cache[link], data, cache)
+        # ---------------------------------------------------------------------
+        # execute
+        # ---------------------------------------------------------------------
+        for target in self.__target:
+            for link in filter(compile(target).match, data):
+                if link not in cache:
+                    cache[link] = data[link]  
+                    # find connections 
+                    find(SarBase.ILINK, cache[link], data, cache)
+                    find(SarBase.OLINK, cache[link], data, cache)
+        return cache
 # -----------------------------------------------------------------------------
 # main
 # -----------------------------------------------------------------------------
+from yaml import dump
 def main(params):
     # start
     Log.info('Start')
     # xml to python and filter
-    SarFilter(params.target, params.filter)(SarParser(params.path)())
-    #pprint(SarFilter(params.target, params.filter)(SarParser(params.path)()))
+    #SarFilter(params.target, params.filter)(SarParser(params.path)())
+    print(dump(SarFilter(params.target, params.filter)(SarParser(params.path)())))
     # finish
     Log.info('Finish')
     return 0

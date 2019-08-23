@@ -49,7 +49,12 @@ parser.set_defaults(func=sar_filter)
 # -----------------------------------------------------------------------------
 parser = sub.add_parser('view')
 # arguments
-parser.add_argument('path', type=str, help='search path')
+parser.add_argument(
+	'path', type=str, help='search path')
+parser.add_argument(
+	'--target', type=str, help='target key', nargs='+', default='.*')
+parser.add_argument(
+	'--filter', type=str, help='filter key', nargs='+', default='')
 # function
 parser.set_defaults(func=sar_view)
 # -------------------------------------------------------------------------------------------------
