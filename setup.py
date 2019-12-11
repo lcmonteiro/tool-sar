@@ -28,7 +28,7 @@ setup(
     ],
 	entry_points={
 	  'console_scripts': [
-		  'toolsar   = toolsar.__main__'
+		  'toolsar   = toolsar.__main__:main'
 	  ]
 	}
  )
