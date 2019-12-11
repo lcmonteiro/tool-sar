@@ -4,7 +4,7 @@
 # dependencies
 # -------------------------------------------------------------------------------------------------
 from argparse   import ArgumentParser
-from CheckUUIDS import main as check_uuids
+from check_uuids import main as check_uuids
 from SarViewer  import main as sar_view
 from SarParser  import main as sar_parse
 from SarFilter  import main as sar_filter

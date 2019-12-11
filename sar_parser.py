@@ -5,7 +5,7 @@
 from XmlTransform  import XmlTransform
 from SarTransform  import SarTransform
 from TreeTransform import TreeTransform
-from FileSearch    import FileSearch
+from file_search    import file_search
 from SarBase       import SarBase
 from Log           import Log
 # -------------------------------------------------------------------------------------------------
@@ -64,7 +64,7 @@ class SarParser(SarBase):
         if isinstance(self.__path, list):
             return self.__path
         else:
-            return FileSearch.find(self.__path, '.*arxml$')
+            return file_search.find(self.__path, '.*arxml$')
         #
     #
 #
