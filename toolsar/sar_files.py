@@ -2,9 +2,9 @@
 # -------------------------------------------------------------------------------------------------
 # dependencies
 # -------------------------------------------------------------------------------------------------
-from xml_transform  import XmlTransform
-from file_search    import FileSearch
-from sar_base       import SarBase
+from toolsar.xml_transform  import XmlTransform
+from toolsar.file_search    import FileSearch
+from toolsar.sar_base       import SarBase
 # -------------------------------------------------------------------------------------------------
 # Sar Files
 # -------------------------------------------------------------------------------------------------

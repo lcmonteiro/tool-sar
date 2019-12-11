@@ -11,7 +11,7 @@ with open("README.md", "r") as fh:
 # setup
 # -----------------------------------------------------------------------------
 setup(
-    name='mergex',  
+    name='toolsar',  
     version='0.5',
     author="Luis Monteiro",
     author_email="monteiro.lcm@gmail.com",
@@ -22,11 +22,13 @@ setup(
         'toolsar'
     ],
     install_requires=[
-        'gitpython'
+        'boltons',
+        'flask',
+        'colorlog'
     ],
 	entry_points={
 	  'console_scripts': [
-		  'toolsar   = toolsar'
+		  'toolsar   = toolsar.__main__'
 	  ]
 	}
  )

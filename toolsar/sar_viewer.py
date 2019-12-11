@@ -2,11 +2,11 @@
 # -------------------------------------------------------------------------------------------------
 # dependencies
 # -------------------------------------------------------------------------------------------------
-from flask         import Flask, render_template, request, jsonify
-from sar_parser    import SarParser
-from sar_search    import SarSearch
-from sar_filter    import SarFilter
-from sar_transform import SarTransform
+from flask                 import Flask, render_template, request, jsonify
+from toolsar.sar_parser    import SarParser
+from toolsar.sar_search    import SarSearch
+from toolsar.sar_filter    import SarFilter
+from toolsar.sar_transform import SarTransform
 # -------------------------------------------------------------------------------------------------
 # code
 # -------------------------------------------------------------------------------------------------

@@ -2,12 +2,12 @@
 # -------------------------------------------------------------------------------------------------
 # dependencies
 # -------------------------------------------------------------------------------------------------
-from sar_base     import SarBase
-from sar_parser   import SarParser
-from log          import Log
-from re           import compile, match
-from functools    import reduce
-from pprint       import pprint
+from toolsar.sar_base   import SarBase
+from toolsar.sar_parser import SarParser
+from toolsar.log        import Log
+from re                 import compile, match
+from functools          import reduce
+from pprint             import pprint
 # -------------------------------------------------------------------------------------------------
 # Sar Parser
 # -------------------------------------------------------------------------------------------------

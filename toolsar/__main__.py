@@ -3,11 +3,11 @@
 # -------------------------------------------------------------------------------------------------
 # dependencies
 # -------------------------------------------------------------------------------------------------
-from argparse    import ArgumentParser
-from check_uuids import main as check_uuids
-from sar_viewer  import main as sar_view
-from sar_parser  import main as sar_parse
-from sar_filter  import main as sar_filter
+from argparse            import ArgumentParser
+from toolsar.check_uuids import main as check_uuids
+from toolsar.sar_viewer  import main as sar_view
+from toolsar.sar_parser  import main as sar_parse
+from toolsar.sar_filter  import main as sar_filter
 # -------------------------------------------------------------------------------------------------
 # parsers
 # -------------------------------------------------------------------------------------------------

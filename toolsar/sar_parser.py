@@ -2,12 +2,12 @@
 # -------------------------------------------------------------------------------------------------
 # dependencies
 # -------------------------------------------------------------------------------------------------
-from xml_transform  import XmlTransform
-from sar_transform  import SarTransform
-from tree_transform import TreeTransform
-from file_search    import FileSearch
-from sar_base       import SarBase
-from log            import Log
+from toolsar.xml_transform  import XmlTransform
+from toolsar.sar_transform  import SarTransform
+from toolsar.tree_transform import TreeTransform
+from toolsar.file_search    import FileSearch
+from toolsar.sar_base       import SarBase
+from toolsar.log            import Log
 # -------------------------------------------------------------------------------------------------
 # Sar Parser
 # -------------------------------------------------------------------------------------------------

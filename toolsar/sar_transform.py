@@ -2,10 +2,10 @@
 # -------------------------------------------------------------------------------------------------
 # dependencies
 # -------------------------------------------------------------------------------------------------
-from boltons.iterutils import remap, default_enter, default_exit
-from var_search        import VarSearch
-from sar_base          import SarBase
-from log               import Log
+from boltons.iterutils  import remap, default_enter, default_exit
+from toolsar.var_search import VarSearch
+from toolsar.sar_base   import SarBase
+from toolsar.log        import Log
 # -------------------------------------------------------------------------------------------------
 # Sar Transform
 # -------------------------------------------------------------------------------------------------
