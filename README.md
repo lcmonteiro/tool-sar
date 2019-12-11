@@ -1,6 +1,7 @@
-tool-autosar
-============
+# tool-sar
 
-- boltons
-- flask
-- colorlog
+## install
+``` 
+python ./setup.py install 
+```
+
