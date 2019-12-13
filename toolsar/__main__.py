@@ -9,6 +9,8 @@ from toolsar.check_uuids import main as check_uuids
 from toolsar.sar_viewer  import main as sar_view
 from toolsar.sar_parser  import main as sar_parse
 from toolsar.sar_filter  import main as sar_filter
+from toolsar.sar_trace   import main as sar_trace
+from toolsar.log         import Log
 from argparse            import ArgumentParser
 from colorlog            import basicConfig as config_logger
 from logging             import INFO
@@ -26,6 +28,7 @@ def main(args=None):
 	# -----------------------------------------------------------------------------
 	head = ArgumentParser(prog='toolsar')
 	sub  = head.add_subparsers(title='sub-command')
+	
 	# -----------------------------------------------------------------------------
 	# check uuid
 	# -----------------------------------------------------------------------------
@@ -34,6 +37,7 @@ def main(args=None):
 	parser.add_argument('path', type=str, help='search path')
 	# function
 	parser.set_defaults(func=check_uuids)
+	
 	# -----------------------------------------------------------------------------
 	# parse sar
 	# -----------------------------------------------------------------------------
@@ -42,6 +46,7 @@ def main(args=None):
 	parser.add_argument('path', type=str, help='search path')
 	# function
 	parser.set_defaults(func=sar_parse)
+	
 	# -----------------------------------------------------------------------------
 	# filter sar
 	# -----------------------------------------------------------------------------
@@ -55,6 +60,22 @@ def main(args=None):
 		'--filter', type=str, help='filter key', nargs='+', default='')
 	# function
 	parser.set_defaults(func=sar_filter)
+	
+	# -----------------------------------------------------------------------------
+	# trace sar
+	# -----------------------------------------------------------------------------
+	parser = sub.add_parser('trace')
+	# arguments
+	parser.add_argument('path',
+	 	type   =str, 
+		help   ='search path')
+	parser.add_argument('--target', '-t', 
+		type   =str, 
+		help   ='target key', 
+		default='.*')
+	# function
+	parser.set_defaults(func=sar_trace)
+
 	# -----------------------------------------------------------------------------
 	# view sar
 	# -----------------------------------------------------------------------------
@@ -68,6 +89,7 @@ def main(args=None):
 		'--filter', type=str, help='filter key', nargs='+', default='')
 	# function
 	parser.set_defaults(func=sar_view)
+
 	# -----------------------------------------------------------------------------------
 	# execute
 	# -----------------------------------------------------------------------------------
@@ -81,8 +103,10 @@ def main(args=None):
 	opt = head.parse_args(args=args)
 	try:
 		opt.func(opt)
-	except:
+	except AttributeError:
 		head.print_help()
+	except:
+		Log.exception('main')
 # #################################################################################################
 # -------------------------------------------------------------------------------------------------
 # entry point

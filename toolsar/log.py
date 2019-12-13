@@ -14,19 +14,18 @@ class Log:
     @staticmethod
     def debug(msg):
         Log.__log.debug(msg)
-    #
     @staticmethod
     def info(msg):
         Log.__log.info(msg)
-    #
     @staticmethod
     def warning(msg):
         Log.__log.warning(msg)
-    #
     @staticmethod
     def error(msg):
         Log.__log.error(msg)
-    #
+    @staticmethod
+    def exception(msg):
+        Log.__log.exception(msg)
 # -------------------------------------------------------------------------------------------------
 # end
 # -------------------------------------------------------------------------------------------------

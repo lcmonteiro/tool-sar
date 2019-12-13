@@ -64,7 +64,7 @@ class SarParser(SarBase):
         if isinstance(self.__path, list):
             return self.__path
         else:
-            return file_search.find(self.__path, '.*arxml$')
+            return FileSearch.find(self.__path, '.*arxml$')
         #
     #
 #
